@@ -13,4 +13,3 @@ class TribunaBot:
     def start(self):
         self._logger.debug(self._tag, "Started")
         self._controller.start()
-
