@@ -39,10 +39,10 @@ class ReleaseBotController(BotController):
 
     def start(self):
         super().start()
-        updater.start_webhook(
+        self.updater.start_webhook(
             listen="0.0.0.0",
             port=self._config.port,
             url_path=self._config.token()
         )
-        updater.bot.setWebhook(self._config.url + self._config.token())
+        self.updater.bot.setWebhook(self._config.url + self._config.token())
         self.updater.idle()
