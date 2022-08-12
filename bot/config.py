@@ -16,15 +16,11 @@ class DebugConfig(Config):
 
 
 class ReleaseConfig(Config):
-    def __init__(self, token: str, port: int, url: str, cert: str, key: str):
+    def __init__(self, token: str, port: int, url: str):
         self.port = port
         self.url = url
-        self.cert = cert
-        self.key = key
         self._token = token
 
     def token(self) -> str:
         return self._token
 
-    def hook_url(self) -> str:
-        return f"{self.url}:{self.port}/{self.token}"

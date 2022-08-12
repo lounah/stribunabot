@@ -20,12 +20,10 @@ ANALYTICS_LOG_PATH = 'outputs/analytics.json'
 
 
 class Di:
-    def __init__(self, token: str, port: str = "", url: str = "", cert: str = "", key: str = ""):
+    def __init__(self, token: str, port: str = "", url: str = ""):
         self._token = token
         self._port = port
         self._url = url
-        self._cert = cert
-        self._key = key
         self._logger = LoggerImpl([SystemOutTarget(), FileTarget(LOGS_PATH)])
         self._analytics_logger = AnalyticsLogger(ANALYTICS_LOG_PATH)
         self._analytics = Analytics(self._logger)
@@ -38,10 +36,10 @@ class Di:
         return TribunaBot(controller, self._logger)
 
     def _create_controller(self) -> BotController:
-        if not self._port and not self._url and not self._cert and not self._key:
+        if not self._port and not self._url:
             return DebugBotController(DebugConfig(self._token), self._handlers(), self._logger)
         else:
-            config = ReleaseConfig(self._token, int(self._port), self._url, self._cert, self._key)
+            config = ReleaseConfig(self._token, int(self._port), self._url)
             return ReleaseBotController(config, self._handlers(), self._logger)
 
     @staticmethod

@@ -4,7 +4,11 @@ from di.di import Di
 
 
 def main():
-    di = Di(os.getenv('token'))
+    di = Di(
+        os.getenv('token'),
+        os.getenv('port'),
+        os.getenv('url')
+    )
     di.bot().start()
 
 
