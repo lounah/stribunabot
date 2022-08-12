@@ -11,7 +11,8 @@ class TribunaBot:
         self._tag = "TribunaBot"
 
     def start(self):
-        try:
-            threading.Thread(target=self._controller.start).start()
-        except Exception as e:
-            self._logger.error(self._tag, f"{str(e)}")
+        self._controller.start()
+        # try:
+        #     threading.Thread(target=self._controller.start).start()
+        # except Exception as e:
+        #     self._logger.error(self._tag, f"{str(e)}")
