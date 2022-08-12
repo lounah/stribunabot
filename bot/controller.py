@@ -44,5 +44,5 @@ class ReleaseBotController(BotController):
             port=self._config.port,
             url_path=self._config.token()
         )
-        updater.bot.setWebhook(self._config.url + TOKEN)
+        updater.bot.setWebhook(self._config.url + self._config.token())
         self.updater.idle()
