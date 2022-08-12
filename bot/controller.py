@@ -42,7 +42,7 @@ class ReleaseBotController(BotController):
         self.updater.start_webhook(
             listen="0.0.0.0",
             port=self._config.port,
-            url_path=self._config.token()
+            url_path=self._config.token(),
+            webhook_url=self._config.url + self._config.token()
         )
-        self.updater.bot.setWebhook(self._config.url + self._config.token())
         self.updater.idle()
