@@ -32,7 +32,7 @@ class ProjectDescriptionHandler(MessageHandler):
 
     def _handle(self, update, ctx):
         self._analytics.event(AnalyticsEvent.from_reply(update))
-        self._repo.add(update.message.chat_id, update.message.text)
+        self._repo.add(update.message.chat_id, update.message.text + ' ' + update.message.from_user.username)
         update.message.reply_text(
             self._resources.message('publish_project'),
             parse_mode=ParseMode.HTML,
